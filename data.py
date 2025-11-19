@@ -721,9 +721,9 @@ dishes: NameDict[Dish] = NameDict(
         Dish(
             name="Rest-pytt",
             ingredients=[
-                Ingredient(name="Potatis", quantity=8 * units.kilograms),
-                Ingredient(name="Grädde", quantity=1 * units.liters),
-                Ingredient(name="Ketchup", quantity=15 * 40 * units.grams),
+                Ingredient(name="Potatis", quantity=225 * 36 * units.grams),
+                Ingredient(name="Grädde", quantity=0.5 * 36 * units.deciliter),
+                Ingredient(name="Ketchup", quantity=15 * 36 * units.grams),
             ],
             variants={
                 "laktosfri": [
