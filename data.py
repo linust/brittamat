@@ -39,12 +39,12 @@ ingredient_types: NameDict[IngredientType] = NameDict(
             conversions=[8.47 * units.ounce / (1 * units.cups)],
         ),
         IngredientType(
-            name="Grovkornig senap",
+            name="Grovkornig senap (inte söt)",
             purchase_unit=units.grams,
             category="burk",
             conversions=[8.47 * units.ounce / (1 * units.cups)],
         ),
-        IngredientType(name="Ketchup", purchase_unit=units.count, category="burk"),
+        IngredientType(name="Ketchup", purchase_unit=units.grams, category="burk"),
         IngredientType(
             name="Sambal oelek",
             purchase_unit=units.grams,
@@ -245,7 +245,9 @@ ingredient_types: NameDict[IngredientType] = NameDict(
         ),
         IngredientType(name="Prinskorvar", purchase_unit=units.count, category="kyl"),
         IngredientType(
-            name="Sill, burk, blandat", purchase_unit=units.count, category="kyl"
+            name="Sill, burk (stor), blandade sorter",
+            purchase_unit=units.count,
+            category="kyl",
         ),
         IngredientType(
             name="Knäckebröd, skivor",
@@ -398,12 +400,22 @@ ingredient_types: NameDict[IngredientType] = NameDict(
             name="Paprika, valfri", purchase_unit=units.kilogram, category="grönt"
         ),
         IngredientType(
+            name="Paprika, grön", purchase_unit=units.kilogram, category="grönt"
+        ),
+        IngredientType(
             name="Skorpor, kardemumma", purchase_unit=units.kilogram, category="torr"
         ),
         IngredientType(
             name="Skorpor, grova", purchase_unit=units.kilogram, category="torr"
         ),
-        IngredientType(name="Tepåsar", purchase_unit=units.count, category="torr"),
+        IngredientType(
+            name="Tepåsar, svart (bra sort)", purchase_unit=units.count, category="torr"
+        ),
+        IngredientType(
+            name="Tepåsar, roiboos, (bra sort)",
+            purchase_unit=units.count,
+            category="torr",
+        ),
         IngredientType(name="Kanel", purchase_unit=None, category="krydd"),
         IngredientType(name="Bregott", purchase_unit=units.kilogram, category="mejeri"),
         IngredientType(
@@ -421,7 +433,7 @@ ingredient_types: NameDict[IngredientType] = NameDict(
             category="torr",
         ),
         IngredientType(
-            name="Pasta, Penne", purchase_unit=units.kilogram, category="torr"
+            name="Pasta, penne", purchase_unit=units.kilogram, category="torr"
         ),
         IngredientType(
             name="Cirtronjuice", purchase_unit=units.deciliter, category="burk"
@@ -506,6 +518,7 @@ dishes: NameDict[Dish] = NameDict(
                 Ingredient(name="Olja, oliv", quantity=6 * units.deciliters),
                 Ingredient(name="Salt", quantity=None),
                 Ingredient(name="Peppar, svart", quantity=None),
+                Ingredient(name="Paprika, grön", quantity=400 * units.grams),
             ],
             variants={
                 "vegetarian": [
@@ -530,7 +543,7 @@ dishes: NameDict[Dish] = NameDict(
                 Ingredient(name="Fetaost", quantity=1.6 * units.kilogram),
                 Ingredient(name="Basilika", quantity=None),
                 Ingredient(name="Salt", quantity=None),
-                Ingredient(name="Pasta, Penne", quantity=5 * units.kilogram),
+                Ingredient(name="Pasta, penne", quantity=4 * units.kilogram),
             ],
             variants={
                 "vegetarian": [
@@ -586,13 +599,13 @@ dishes: NameDict[Dish] = NameDict(
             ingredients=[
                 Ingredient(name="Falukorv", quantity=5 * units.kilogram),
                 Ingredient(name="Lök, gul", quantity=20 * units.count),
-                Ingredient(name="Tomatpuré", quantity=6 * units.deciliters),
+                Ingredient(name="Tomatpuré", quantity=6.5 * units.deciliters),
                 Ingredient(name="Fransk senap", quantity=1.5 * units.deciliters),
-                Ingredient(name="Mjölk", quantity=2.5 * units.liters),
+                Ingredient(name="Mjölk", quantity=2 * units.liters),
                 Ingredient(name="Buljongtärning, grönsak", quantity=4 * units.count),
                 Ingredient(name="Creme Fraiche", quantity=3 * units.liters),
-                Ingredient(name="Ketchup", quantity=0.5 * units.count),
-                Ingredient(name="Sambal oelek", quantity=4 * units.tablespoons),
+                Ingredient(name="Ketchup", quantity=500 * units.grams),
+                Ingredient(name="Sambal oelek", quantity=6 * units.tablespoons),
                 Ingredient(name="Socker", quantity=2.5 * units.deciliters),
                 Ingredient(name="Soya, kinesisk", quantity=3 * units.deciliters),
                 Ingredient(name="Vitlöksklyftor", quantity=1 * units.ounce),
@@ -657,13 +670,16 @@ dishes: NameDict[Dish] = NameDict(
             ingredients=[
                 Ingredient(
                     name="Ärtsoppa på burk, portioner (400g/pp)",
-                    quantity=40 * units.count,
+                    quantity=36 * units.count,
                 ),
-                Ingredient(name="Grovkornig senap", quantity=40 * 25 * units.grams),
+                Ingredient(
+                    name="Grovkornig senap (inte söt)", quantity=40 * 20 * units.grams
+                ),
                 Ingredient(
                     name="Bröd, ljust (typ polar och annat), skivor",
                     quantity=40 * 1.5 * units.count,
                 ),
+                Ingredient(name="Timjan", quantity=None),
             ],
             variants={
                 "vegetarian": [
@@ -699,6 +715,28 @@ dishes: NameDict[Dish] = NameDict(
                 ],
                 "mjölkfri": [
                     Ingredient(name="Hollandaise, mjölkfri", quantity=50 * units.grams)
+                ],
+            },
+        ),
+        Dish(
+            name="Rest-pytt",
+            ingredients=[
+                Ingredient(name="Potatis", quantity=8 * units.kilograms),
+                Ingredient(name="Grädde", quantity=1 * units.liters),
+                Ingredient(name="Ketchup", quantity=15 * 40 * units.grams),
+            ],
+            variants={
+                "laktosfri": [
+                    Ingredient(name="Grädde, laktosfri", quantity=1 * units.deciliters)
+                ],
+                "mjölkfri": [
+                    Ingredient(name="Grädde, mjölkfri", quantity=1 * units.deciliters)
+                ],
+                "vegetarian": [
+                    Ingredient(name="Quornfiléer", quantity=2 * units.count),
+                    Ingredient(
+                        name="Buljongtärning, grönsak", quantity=0.5 * units.count
+                    ),
                 ],
             },
         ),
@@ -750,8 +788,8 @@ dishes: NameDict[Dish] = NameDict(
                 Ingredient(name="Lök, gul", quantity=10 * units.count),
                 Ingredient(name="Vetemjöl", quantity=3.75 * units.deciliters),
                 Ingredient(name="Grädde", quantity=1 * units.liters),
-                Ingredient(name="Potatis", quantity=16 * units.kilograms),
-                Ingredient(name="Salladshuvud", quantity=6 * units.count),
+                Ingredient(name="Potatis", quantity=10 * units.kilograms),
+                Ingredient(name="Salladshuvud", quantity=4 * units.count),
                 Ingredient(name="Gurka", quantity=5 * units.count),
                 Ingredient(name="Tomater", quantity=10 * units.count),
             ],
@@ -779,9 +817,9 @@ dishes: NameDict[Dish] = NameDict(
                 Ingredient(name="Rädisor, knippe", quantity=13 * units.count),
                 Ingredient(name="Salt", quantity=None),
                 Ingredient(name="Kassler", quantity=5 * units.kilograms),
-                Ingredient(name="Vinäger, vitvins", quantity=2 * units.deciliters),
-                Ingredient(name="Olja, raps", quantity=4 * units.deciliters),
-                Ingredient(name="Fransk senap", quantity=7 * units.tablespoons),
+                Ingredient(name="Vinäger, vitvins", quantity=4 * units.deciliters),
+                Ingredient(name="Olja, raps", quantity=8 * units.deciliters),
+                Ingredient(name="Fransk senap", quantity=14 * units.tablespoons),
                 Ingredient(name="Peppar, svart", quantity=None),
             ],
             variants={
@@ -794,7 +832,9 @@ dishes: NameDict[Dish] = NameDict(
         Dish(
             name="Sill och potatis",
             ingredients=[
-                Ingredient(name="Sill, burk, blandat", quantity=10 * units.count),
+                Ingredient(
+                    name="Sill, burk (stor), blandade sorter", quantity=10 * units.count
+                ),
                 Ingredient(name="Potatis", quantity=16 * units.kilograms),
                 Ingredient(name="Knäckebröd, skivor", quantity=60 * units.count),
                 Ingredient(name="Lök, röd", quantity=5 * units.count),
@@ -850,7 +890,7 @@ dishes: NameDict[Dish] = NameDict(
                 Ingredient(name="Kolbasz", quantity=1 * units.kilograms),
                 Ingredient(name="Lök, gul", quantity=2.2 * units.kilograms),
                 Ingredient(name="Buljongtärning, kött", quantity=20 * units.count),
-                Ingredient(name="Tomatpuré", quantity=3.5 * units.deciliters),
+                Ingredient(name="Tomatpuré", quantity=4.5 * units.deciliters),
                 Ingredient(name="Paprikapulver", quantity=None),
                 Ingredient(name="Potatis", quantity=4.5 * units.kilograms),
                 Ingredient(name="Paprika, röd", quantity=1.4 * units.kilograms),
@@ -903,6 +943,8 @@ dishes: NameDict[Dish] = NameDict(
             name="Chili",
             ingredients=[
                 Ingredient(name="Ris, parboiled", quantity=6 * units.liters),
+                Ingredient(name="Koriander, färsk", quantity=3 * units.count),
+                Ingredient(name="Creme Fraiche ", quantity=2 * units.litre),
             ],
             variants={
                 "hannah": [
@@ -922,7 +964,7 @@ dishes: NameDict[Dish] = NameDict(
                 Ingredient(name="Chili, grön", quantity=14 * units.count),
                 Ingredient(name="Vitlöksklyftor", quantity=20 * units.count),
                 Ingredient(name="Jordnötssmör, crunchy", quantity=7 * units.deciliters),
-                Ingredient(name="Tomatpuré", quantity=14 * units.tablespoons),
+                Ingredient(name="Tomatpuré", quantity=15 * units.tablespoons),
                 Ingredient(name="Kikärtor, okokta", quantity=0.805 * units.kilograms),
                 Ingredient(name="Bladspenat", quantity=2.800 * units.kilograms),
                 Ingredient(name="Krossade tomater", quantity=2.800 * units.kilograms),
@@ -930,7 +972,7 @@ dishes: NameDict[Dish] = NameDict(
                 Ingredient(name="Salt", quantity=None),
                 Ingredient(name="Peppar, svart", quantity=None),
                 Ingredient(name="Olja, raps", quantity=1.6 * units.deciliters),
-                Ingredient(name="Ris, fullkorn", quantity=5 * units.kilograms),
+                Ingredient(name="Ris, fullkorn", quantity=3 * units.kilograms),
                 Ingredient(name="Sriracha", quantity=None),
             ],
         ),
@@ -951,7 +993,7 @@ dishes: NameDict[Dish] = NameDict(
                 Ingredient(name="Märkpenna", quantity=2 * units.count),
                 Ingredient(name="Tändare med lång hals", quantity=1 * units.count),
                 Ingredient(name="Frystejp", quantity=2 * units.count),
-                Ingredient(name="Ketchup", quantity=2 * units.count),
+                Ingredient(name="Ketchup", quantity=1000 * units.grams),
                 Ingredient(name="Brödbakningsmix", quantity=2 * units.count),
                 Ingredient(name="Diskmedel, flaska", quantity=1 * units.count),
                 Ingredient(name="Hushållspapper, rullar", quantity=4 * units.count),
@@ -1014,7 +1056,10 @@ dishes: NameDict[Dish] = NameDict(
                 Ingredient(name="Müsli", quantity=4 * units.kilogram),
                 Ingredient(name="Skorpor, kardemumma", quantity=3 * units.kilogram),
                 Ingredient(name="Skorpor, grova", quantity=3 * units.kilogram),
-                Ingredient(name="Tepåsar", quantity=150 * units.count),
+                Ingredient(
+                    name="Tepåsar, roiboos, (bra sort)", quantity=100 * units.count
+                ),
+                Ingredient(name="Tepåsar, svart (bra sort)", quantity=50 * units.count),
                 Ingredient(name="Ost mild", quantity=3 * units.kilogram),
                 Ingredient(name="Ost med smak", quantity=5.3 * units.kilogram),
             ],
@@ -1056,9 +1101,9 @@ menu: list[MenuItem] = [
         variants={"laktosfri": 2, "vegetarian": 0},
     ),
     MenuItem(
-        dish=dishes["Kassler med potatissallad"],
-        day="onsdag",
-        variants={"laktosfri": 2, "vegetarian": 1},
+        dish=dishes["Fänkål och kycklingsallad"],
+        day="onsgag",
+        variants={"vegetarian": 1},
     ),
     MenuItem(
         dish=dishes["Kycklinggryta med fetaost"],
@@ -1075,9 +1120,9 @@ menu: list[MenuItem] = [
         variants={"vegetarian": 2},
     ),
     MenuItem(
-        dish=dishes["Fänkål och kycklingsallad"],
+        dish=dishes["Kassler med potatissallad"],
         day="fredag",
-        variants={"vegetarian": 1},
+        variants={"laktosfri": 2, "vegetarian": 1},
     ),
     MenuItem(
         dish=dishes["Porterstek"],
@@ -1100,8 +1145,11 @@ menu: list[MenuItem] = [
     #     variants={"laktosfri": 0},
     # ),
     MenuItem(dish=dishes["Fest"], day="lördag", variants={"vegetarian": 1}),
+    #    MenuItem(dish=dishes["Brunch"], day="söndag", variants={"laktosfri": 1, "vegetarian": 2}),
     MenuItem(
-        dish=dishes["Brunch"], day="söndag", variants={"laktosfri": 1, "vegetarian": 2}
+        dish=dishes["Rest-pytt"],
+        day="söndag",
+        variants={"laktosfri": 0, "mjölkfri": 0, "vegetarian": 0},
     ),
     # MenuItem(
     #     dish=dishes["Pytt-i-panna"],
@@ -1121,7 +1169,7 @@ translations = [("kilogram", "kg"), ("count", "st"), ("deciliter", "dl"), ("gram
 # prebought = [
 #                Ingredient(name=u"Korvpålägg, skivor", quantity=50*units.count),
 #                Ingredient(name=u"Köttpålägg, skivor", quantity=150*units.count),
-#                Ingredient(name=u"Sill, burk, blandat",  quantity=10 * units.count),
+#                Ingredient(name=u"Sill, burk (stor), blandade sorter,  quantity=10 * units.count),
 #                Ingredient(name=u"Vetemjöl",             quantity=940 * units.grams),
 #                Ingredient(name=u"Tomatpuré",             quantity=350 * units.grams),
 #                Ingredient(name=u"Kikärtor, okokta",     quantity=1.2 * units.kilograms),
@@ -1134,7 +1182,7 @@ translations = [("kilogram", "kg"), ("count", "st"), ("deciliter", "dl"), ("gram
 
 # Remove this from the list, already bought!
 prebought: list[Ingredient] = [
-    Ingredient(name="Ärtsoppa på burk, portioner (400g/pp)", quantity=40 * units.count),
+    Ingredient(name="Ärtsoppa på burk, portioner (400g/pp)", quantity=36 * units.count),
     Ingredient(name="Kycklingfilé", quantity=5 * units.kilogram),
     Ingredient(name="Fetaost", quantity=2.2 * units.kilograms),
     Ingredient(name="Soya, kinesisk", quantity=4 * units.deciliters),
@@ -1153,7 +1201,7 @@ prebought: list[Ingredient] = [
 
 # Remove this from the list, save for buying later
 buy_later: list[Ingredient] = [
-    Ingredient(name="Ägg", quantity=90 * units.count),  # simply do not buy them before
+    #    Ingredient(name="Ägg", quantity=90 * units.count),  # simply do not buy them before
     Ingredient(name="Mjölk", quantity=14 * units.liters),
     Ingredient(
         name="Bröd, ljust (typ polar och annat), skivor", quantity=80 * units.count
