@@ -650,7 +650,7 @@ dishes: NameDict[Dish] = NameDict(
                 Ingredient(name="Buljongtärning, fisk", quantity=18 * units.count),
                 Ingredient(name="Socker", quantity=1.5 * units.deciliters),
                 Ingredient(name="Purjolök", quantity=2 * units.kilograms),
-                Ingredient(name="Majsstärkelse inte maizena", quantity=2 * units.deciliters),
+                Ingredient(name="Majsstärkelse inte maizena", quantity=2.5 * units.deciliters),
                 Ingredient(name="Persilja, färsk", quantity=2 * units.count),
                 Ingredient(name="Curry", quantity=0.5 * units.deciliters),
                 Ingredient(name="Salt, grov", quantity=None),
@@ -928,7 +928,7 @@ dishes: NameDict[Dish] = NameDict(
                 "laktosfri": [],
                 "glutenfri": [
                     Ingredient(
-                        name="Bröd, glutenfritt", quantity=0.5 * units.count
+                        name="Bröd, glutenfritt", quantity=1 * units.count
                     )
                 ],
             },
