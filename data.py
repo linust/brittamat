@@ -388,7 +388,9 @@ ingredient_types: NameDict[IngredientType] = NameDict(
         IngredientType(
             name="Mörkt bröd, skivor", purchase_unit=units.count, category="torr"
         ),
-        IngredientType(name="Bröd, glutenfritt", purchase_unit=None, category="torr"),
+        IngredientType(
+            name="Bröd, glutenfritt", purchase_unit=units.count, category="torr"
+        ),
         IngredientType(
             name="Frukt, blandad prisvärd",
             purchase_unit=units.kilogram,
@@ -436,7 +438,7 @@ ingredient_types: NameDict[IngredientType] = NameDict(
             name="Pasta, penne", purchase_unit=units.kilogram, category="torr"
         ),
         IngredientType(
-            name="Cirtronjuice", purchase_unit=units.deciliter, category="burk"
+            name="Citronjuice", purchase_unit=units.deciliter, category="burk"
         ),
         IngredientType(name="Lax", purchase_unit=units.gram, category="kyl"),
         IngredientType(
@@ -468,7 +470,10 @@ ingredient_types: NameDict[IngredientType] = NameDict(
         ),
         IngredientType(name="Sojamjölk", purchase_unit=units.liters, category="mejeri"),
         IngredientType(
-            name="Maizena, ej ljus/mörk", purchase_unit=None, category="torr"
+            name="Majsstärkelse inte maizena",
+            purchase_unit=units.grams,
+            category="torr",
+            conversions=[1 * units.deciliters / (60 * units.grams)],
         ),
         IngredientType(
             name="Ost mild", purchase_unit=units.kilogram, category="mejeri"
@@ -514,7 +519,7 @@ dishes: NameDict[Dish] = NameDict(
                 Ingredient(name="Valnötter", quantity=15 * units.deciliters),
                 Ingredient(name="Oliver, svarta", quantity=15 * units.deciliters),
                 Ingredient(name="Apelsiner", quantity=18 * units.count),
-                Ingredient(name="Cirtronjuice", quantity=7 * units.deciliters),
+                Ingredient(name="Citronjuice", quantity=7 * units.deciliters),
                 Ingredient(name="Olja, oliv", quantity=6 * units.deciliters),
                 Ingredient(name="Salt", quantity=None),
                 Ingredient(name="Peppar, svart", quantity=None),
@@ -527,6 +532,7 @@ dishes: NameDict[Dish] = NameDict(
                 "laktosfri": [
                     Ingredient(name="Fetaost, laktosfri", quantity=55 * units.gram)
                 ],
+                "glutenfri": [],
             },
         ),
         Dish(
@@ -631,6 +637,7 @@ dishes: NameDict[Dish] = NameDict(
                         name="Mjölkfri Creme Fraiche", quantity=0.5 * units.deciliters
                     ),
                 ],
+                "glutenfri": [],
             },
         ),
         Dish(
@@ -643,7 +650,7 @@ dishes: NameDict[Dish] = NameDict(
                 Ingredient(name="Buljongtärning, fisk", quantity=18 * units.count),
                 Ingredient(name="Socker", quantity=1.5 * units.deciliters),
                 Ingredient(name="Purjolök", quantity=2 * units.kilograms),
-                Ingredient(name="Vetemjöl", quantity=2.5 * units.deciliters),
+                Ingredient(name="Majsstärkelse inte maizena", quantity=2 * units.deciliters),
                 Ingredient(name="Persilja, färsk", quantity=2 * units.count),
                 Ingredient(name="Curry", quantity=0.5 * units.deciliters),
                 Ingredient(name="Salt, grov", quantity=None),
@@ -653,7 +660,7 @@ dishes: NameDict[Dish] = NameDict(
             variants={
                 "vegan": [
                     Ingredient(
-                        name="Vegetarisk ärtsoppa burk", quantity=1 * units.count
+                        name="Vegetarisk soppa burk", quantity=1 * units.count
                     )
                 ],
                 "laktosfri": [
@@ -662,7 +669,7 @@ dishes: NameDict[Dish] = NameDict(
                     )
                 ],
                 "vegetarian": [],
-                "glutenfri": [Ingredient(name="Maizena, ej ljus/mörk", quantity=None)],
+                "glutenfri": [],
             },
         ),
         Dish(
@@ -686,7 +693,13 @@ dishes: NameDict[Dish] = NameDict(
                     Ingredient(
                         name="Vegetarisk ärtsoppa burk", quantity=1 * units.count
                     )
-                ]
+                ],
+                "glutenfri": [
+                    Ingredient(
+                        name="Bröd, glutenfritt", quantity=1 * units.count
+                    )
+                ],
+                "laktosfri": [],
             },
         ),
         Dish(
@@ -806,7 +819,7 @@ dishes: NameDict[Dish] = NameDict(
                         name="Buljongtärning, grönsak", quantity=0.5 * units.count
                     ),
                 ],
-                "glutenfri": [Ingredient(name="Maizena, ej ljus/mörk", quantity=None)],
+                "glutenfri": [Ingredient(name="Majsstärkelse inte maizena", quantity=None)],
             },
         ),
         Dish(
@@ -827,6 +840,7 @@ dishes: NameDict[Dish] = NameDict(
                     Ingredient(name="Quornburgare", quantity=2 * units.count)
                 ],
                 "laktosfri": [],
+                "glutenfri": [],
             },
         ),
         Dish(
@@ -912,6 +926,11 @@ dishes: NameDict[Dish] = NameDict(
                     ),
                 ],
                 "laktosfri": [],
+                "glutenfri": [
+                    Ingredient(
+                        name="Bröd, glutenfritt", quantity=0.5 * units.count
+                    )
+                ],
             },
         ),
         Dish(
@@ -975,6 +994,12 @@ dishes: NameDict[Dish] = NameDict(
                 Ingredient(name="Ris, fullkorn", quantity=3 * units.kilograms),
                 Ingredient(name="Sriracha", quantity=None),
             ],
+            variants={
+                "vegetarian": [],
+                "vegan": [],
+                "laktosfri": [],
+                "glutenfri": [],
+            },
         ),
         Dish(
             name="Fest",
@@ -1093,46 +1118,47 @@ menu: list[MenuItem] = [
     MenuItem(
         dish=dishes["Korv stroganoff"],
         day="tisdag",
-        variants={"laktosfri": 2, "vegetarian": 1},
+        variants={"glutenfri": 1, "laktosfri": 1, "vegetarian": 1},
     ),
     MenuItem(
         dish=dishes["Fisksoppa"],
         day="tisdag",
-        variants={"laktosfri": 2, "vegetarian": 0},
+        variants={"glutenfri": 1, "laktosfri": 1, "vegetarian": 0},
     ),
     MenuItem(
         dish=dishes["Fänkål och kycklingsallad"],
-        day="onsgag",
-        variants={"vegetarian": 1},
+        day="onsdag",
+        variants={"glutenfri": 1, "laktosfri": 1, "vegetarian": 1},
     ),
     MenuItem(
         dish=dishes["Kycklinggryta med fetaost"],
         day="onsdag",
-        variants={"laktosfri": 2, "vegetarian": 1},
+        variants={"glutenfri": 1, "laktosfri": 1, "vegetarian": 1},
     ),
     MenuItem(
         dish=dishes["Västafrikansk kikärtsgryta med jordnötssås"],
         day="torsdag",
+        variants={"glutenfri": 3, "laktosfri": 3},
     ),
     MenuItem(
         dish=dishes["Gulasch"],
         day="torsdag",
-        variants={"vegetarian": 2},
+        variants={"glutenfri": 3, "laktosfri": 3,"vegetarian": 4},
     ),
     MenuItem(
         dish=dishes["Kassler med potatissallad"],
         day="fredag",
-        variants={"laktosfri": 2, "vegetarian": 1},
+        variants={"glutenfri": 3, "laktosfri": 3, "vegetarian": 4},
     ),
     MenuItem(
         dish=dishes["Porterstek"],
         day="fredag",
-        variants={"glutenfri": 0, "laktosfri": 0, "vegetarian": 1},
+        variants={"glutenfri": 3, "laktosfri": 3, "vegetarian": 4},
     ),
     MenuItem(
         dish=dishes["Ärtsoppa"],
         day="lördag",
-        variants={"vegetarian": 1},
+        variants={"glutenfri": 3, "laktosfri": 3, "vegetarian": 4},
     ),
     # MenuItem(
     #     dish=dishes["Lax"],
