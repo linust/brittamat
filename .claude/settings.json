@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E '\\\\.pyc$|DS_Store')",
+      "Bash(rm -f latex.py *.pyc .DS_Store && rm -rf __pycache__ && echo \"raderat:\" && ls latex.py *.pyc .DS_Store __pycache__ 2>&1 | head)"
+    ],
+    "additionalDirectories": [
+      "/Users/linus/Documents/Code/brittamat"
+    ]
+  }
+}

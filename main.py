@@ -32,13 +32,13 @@ def main() -> None:
     #     if menu_item.dish.name == "Porterstek":
     #         menu[i].dish = alg.scaled_dish(
     #             menu[i].dish, 28.0 / 36.0
-    #         )  # scale to amouont of people on change day
+    #         )  # scale to amount of people on change day
     #     elif menu_item.dish.name == "Extras":
     #         pass  # do not scale extras
     #     else:
     #         menu[i].dish = alg.scaled_dish(
     #             menu[i].dish, 24.0 / 36.0
-    #         )  # scale to amount of poeple on other days
+    #         )  # scale to amount of people on other days
 
     shopping_list = alg.make_shopping_list(menu, data.ingredient_types)
 
