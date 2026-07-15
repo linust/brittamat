@@ -228,7 +228,7 @@ ingredient_types: NameDict[IngredientType] = NameDict(
         IngredientType(name="Grädde", purchase_unit=units.liter, category="mejeri"),
         IngredientType(name="Spiskummin", purchase_unit=None, category="krydd"),
         IngredientType(
-            name="Högrev, benfri", purchase_unit=units.kilogram, category="kyl"
+            name="Fransyska", purchase_unit=units.kilogram, category="kyl"
         ),
         IngredientType(name="Kassler", purchase_unit=units.kilogram, category="kyl"),
         IngredientType(
@@ -267,7 +267,7 @@ ingredient_types: NameDict[IngredientType] = NameDict(
             purchase_unit=units.count,
             category="torr",
         ),
-        IngredientType(name="Grytkött", purchase_unit=units.kilogram, category="kyl"),
+        IngredientType(name="Högrev, benfri / bättre grytkött", purchase_unit=units.kilogram, category="kyl"),
         IngredientType(name="Kolbasz", purchase_unit=units.kilogram, category="kyl"),
         IngredientType(
             name="Rödbetor till pytt-i-panna, portioner",
@@ -786,7 +786,7 @@ dishes: NameDict[Dish] = NameDict(
         Dish(
             name="Porterstek",
             ingredients=[
-                Ingredient(name="Högrev, benfri", quantity=10 * units.kilograms),
+                Ingredient(name="Fransyska", quantity=10 * units.kilograms),
                 Ingredient(name="Porter", quantity=10 * 33 * units.centiliters),
                 Ingredient(
                     name="Vinbärsaft, outspädd, bra (typ Önos)",
@@ -900,7 +900,7 @@ dishes: NameDict[Dish] = NameDict(
         Dish(
             name="Gulasch",
             ingredients=[
-                Ingredient(name="Grytkött", quantity=5 * units.kilograms),
+                Ingredient(name="Högrev, benfri / bättre grytkött", quantity=5 * units.kilograms),
                 Ingredient(name="Kolbasz", quantity=1 * units.kilograms),
                 Ingredient(name="Lök, gul", quantity=2.2 * units.kilograms),
                 Ingredient(name="Buljongtärning, kött", quantity=20 * units.count),
@@ -1216,8 +1216,8 @@ prebought: list[Ingredient] = [
     Ingredient(name="Buljongtärning, kött", quantity=(66 - 12) * units.count),
     # Ingredient(name="Buljongtärning, grönsak", quantity=8 * units.count),
     # Ingredient(name="Grädde", quantity=9 * units.liters),
-    Ingredient(name="Olja, raps", quantity=4 * units.deciliters),
-    Ingredient(name="Lök, gul", quantity=800 * units.grams),
+    Ingredient(name="Olja, raps", quantity=12 * units.deciliters),
+    # Ingredient(name="Lök, gul", quantity=800 * units.grams),
     #                Ingredient(name=u"Kikärtor, avrunnen vikt",     quantity=1.5 * units.kilograms),
     #                Ingredient(name=u"Kidneybönor, avrunnen vikt",  quantity=1.5 * units.kilograms),
     #                Ingredient(name=u"Fänkål",               quantity=5.4 * units.kilograms),
