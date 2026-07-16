@@ -1217,6 +1217,8 @@ prebought: list[Ingredient] = [
     # Ingredient(name="Buljongtärning, grönsak", quantity=8 * units.count),
     # Ingredient(name="Grädde", quantity=9 * units.liters),
     Ingredient(name="Olja, raps", quantity=16 * units.deciliters),
+    Ingredient(name="Köttpålägg, skivor", quantity=16 * 6 * units.count),
+    
     # Ingredient(name="Lök, gul", quantity=800 * units.grams),
     #                Ingredient(name=u"Kikärtor, avrunnen vikt",     quantity=1.5 * units.kilograms),
     #                Ingredient(name=u"Kidneybönor, avrunnen vikt",  quantity=1.5 * units.kilograms),
