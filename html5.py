@@ -1,11 +1,47 @@
 # -*- coding: utf-8 -*-
+import math
 from typing import IO, AnyStr, List
 
 import alg
 from html import escape
 from babel.numbers import format_decimal
+from pint import Quantity
 
 from classes import ShoppingListEntry
+
+
+def format_amount(quantity: Quantity) -> tuple[str, str]:
+    """Format a quantity for display in the shopping list.
+
+    Returns a ``(magnitude_str, unit_name)`` pair where ``unit_name`` is the
+    Pint unit name (still to be translated via ``alg.translate_unit``).
+
+    Rules:
+    - grams < 1000 g -> whole grams
+    - grams >= 1000 g -> kilograms, up to 2 decimals (trailing zeros trimmed)
+    - count ("st") -> rounded up to whole units (can't buy half a piece)
+    - kilograms -> up to 2 decimals (trailing zeros trimmed)
+    - anything else -> unchanged 2-decimal rounding
+    """
+    mag = quantity.magnitude
+    unit = str(quantity.units)
+
+    if unit == "gram":
+        if mag >= 1000:
+            value: float = round(mag / 1000, 2)
+            unit = "kilogram"
+        else:
+            value = round(mag)
+    elif unit == "count":
+        value = math.ceil(mag)
+    elif unit == "kilogram":
+        value = round(mag, 2)
+    else:
+        value = round(mag, 2)
+
+    # Babel's default decimal pattern trims trailing zeros, so rounding above
+    # yields "up to N decimals" for free (5.5 -> "5,5", 5.0 -> "5").
+    return format_decimal(value, locale="sv_SE"), unit
 
 
 def shopping_list_to_html5(
@@ -31,18 +67,14 @@ def shopping_list_to_html5(
             print("  <tr>", file=outputfile)
             print("    <td>&#x25a2;</td>", file=outputfile)
             if ingredient.quantity:
-                formatst = "%.1f"
+                magnitude_str, unit_name = format_amount(ingredient.quantity)
                 print(
-                    '    <td class="numeric amt-magnitude">'
-                    + format_decimal(
-                        round(ingredient.quantity.magnitude, 2), locale="sv_SE"
-                    )
-                    + "</td>",
+                    '    <td class="numeric amt-magnitude">' + magnitude_str + "</td>",
                     file=outputfile,
                 )
                 print(
                     '    <td class="amt-unit">'
-                    + escape(alg.translate_unit(str(ingredient.quantity.units)))
+                    + escape(alg.translate_unit(unit_name))
                     + "</td>",
                     file=outputfile,
                 )
