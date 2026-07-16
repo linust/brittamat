@@ -1082,7 +1082,7 @@ dishes: NameDict[Dish] = NameDict(
                 Ingredient(name="Skorpor, kardemumma", quantity=3 * units.kilogram),
                 Ingredient(name="Skorpor, grova", quantity=3 * units.kilogram),
                 Ingredient(
-                    name="Tepåsar, roiboos, (bra sort)", quantity=100 * units.count
+                    name="Tepåsar, roiboos, (bra sort)", quantity=40 * units.count
                 ),
                 Ingredient(name="Tepåsar, svart (bra sort)", quantity=50 * units.count),
                 Ingredient(name="Ost mild", quantity=3 * units.kilogram),
@@ -1216,7 +1216,7 @@ prebought: list[Ingredient] = [
     Ingredient(name="Buljongtärning, kött", quantity=(66 - 12) * units.count),
     # Ingredient(name="Buljongtärning, grönsak", quantity=8 * units.count),
     # Ingredient(name="Grädde", quantity=9 * units.liters),
-    Ingredient(name="Olja, raps", quantity=12 * units.deciliters),
+    Ingredient(name="Olja, raps", quantity=16 * units.deciliters),
     # Ingredient(name="Lök, gul", quantity=800 * units.grams),
     #                Ingredient(name=u"Kikärtor, avrunnen vikt",     quantity=1.5 * units.kilograms),
     #                Ingredient(name=u"Kidneybönor, avrunnen vikt",  quantity=1.5 * units.kilograms),
