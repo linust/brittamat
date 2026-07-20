@@ -665,7 +665,7 @@ dishes: NameDict[Dish] = NameDict(
                 ],
                 "laktosfri": [
                     Ingredient(
-                        name="Gräddfil, laktosfri", quantity=1 * units.deciliters
+                        name="Creme Fraiche, laktosfri", quantity=1 * units.deciliters
                     )
                 ],
                 "vegetarian": [],
